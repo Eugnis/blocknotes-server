@@ -1,0 +1,16 @@
+version: "3"
+services:
+  blocknotes-mongodb:
+    container_name: blocknotes-mongodb
+    image: mongo
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=blocknotes
+    #   - MONGO_INITDB_ROOT_PASSWORD=test
+    # restart: always
+    volumes:
+      - mongo-datavolume:/data/db
+      - ./backup:/backup
+    ports:
+      - 27017:27017
+volumes:
+  mongo-datavolume:
