@@ -9,7 +9,7 @@ import (
 func main() {
 
 	mongouri := "mongodb://blocknotes-mongodb:27017"
-	mongouri = "127.0.0.1:27017"
+	// mongouri = "127.0.0.1:27017"
 	ms, err := mongo.NewSession(mongouri)
 	if err != nil {
 		log.Fatalln("unable to connect to mongodb" + mongouri)
