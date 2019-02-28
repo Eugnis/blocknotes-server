@@ -16,7 +16,7 @@ type noteRouter struct {
 func NewNoteRouter(ns root.NoteService, router *mux.Router) *mux.Router {
 	noteRouter := noteRouter{ns}
 
-	router.HandleFunc("/", noteRouter.createNoteHandler).Methods("PUT")
+	// router.HandleFunc("/", noteRouter.createNoteHandler).Methods("PUT")
 	router.HandleFunc("/view/{address}", noteRouter.getNoteHandler).Methods("GET")
 	router.HandleFunc("/list", noteRouter.listNotesHandler).Methods("POST")
 	// router.HandleFunc("/update_admin", ValidateAdminMiddleware(attributeRouter.updateAttributeHandlerAdmin, a)).Methods("POST")

@@ -46,7 +46,7 @@ func (p *NoteService) GetByNoteAddress(address string) (*root.Note, error) {
 func (p *NoteService) ListNotes(nsr root.NoteSearch) ([]*root.Note, error) {
 	models := []noteModel{}
 	searchReq := bson.M{}
-	gibberish := []string{"gVxX4N7rd0", "coinbenerefuel", "Ignore", "hotwallet drain fee", "BFX_REFILL_SWEEP", "service charge"}
+	gibberish := []string{"gVxX4N7rd0", "ico", "coinbenerefuel", "Ignore", "hotwallet drain fee", "BFX_REFILL_SWEEP", "service charge"}
 	if nsr.NetName != "" {
 		searchReq["netname"] = nsr.NetName
 		// log.Println(nsr.NetName)
