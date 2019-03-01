@@ -25,7 +25,7 @@ type NoteService interface {
 	Create(u *Note) error
 	GetByNoteID(id string) (*Note, error)
 	GetByNoteAddress(address string) (*Note, error)
-	ListNotes(nsr NoteSearch) ([]*Note, error)
+	ListNotes(nsr NoteSearch) ([]*Note, int, error)
 	Update(s *Note) error
 	Remove(id string) error
 	NotesFetcher()

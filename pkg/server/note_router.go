@@ -70,13 +70,19 @@ func (sr *noteRouter) listNotesHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	attrs, err := sr.noteService.ListNotes(nsr)
+	attrs, totalCount, err := sr.noteService.ListNotes(nsr)
 	if err != nil {
 		Error(w, http.StatusNotFound, err.Error())
 		return
 	}
 
-	Json(w, http.StatusOK, attrs)
+	resp := root.APIResponse{
+		Status: 1,
+		Data:   attrs,
+		Count:  totalCount,
+		Type:   "note"}
+
+	Json(w, http.StatusOK, resp)
 }
 
 // func (sr *noteRouter) removeNoteHandler(w http.ResponseWriter, r *http.Request) {

@@ -43,7 +43,7 @@ func (p *NoteService) GetByNoteAddress(address string) (*root.Note, error) {
 	return model.toRootNote(), err
 }
 
-func (p *NoteService) ListNotes(nsr root.NoteSearch) ([]*root.Note, error) {
+func (p *NoteService) ListNotes(nsr root.NoteSearch) ([]*root.Note, int, error) {
 	models := []noteModel{}
 	searchReq := bson.M{}
 	gibberish := []string{"gVxX4N7rd0", "ico", "coinbenerefuel", "Ignore", "hotwallet drain fee", "BFX_REFILL_SWEEP", "service charge"}
@@ -69,6 +69,7 @@ func (p *NoteService) ListNotes(nsr root.NoteSearch) ([]*root.Note, error) {
 	}
 
 	q := p.collection.Find(searchReq).Sort("-$natural")
+	count, _ := q.Count()
 	q = q.Skip(nsr.From).Limit(nsr.Count)
 
 	err := q.All(&models)
@@ -80,7 +81,7 @@ func (p *NoteService) ListNotes(nsr root.NoteSearch) ([]*root.Note, error) {
 		result[i] = item.toRootNote()
 		// log.Println(item.DataSize)
 	}
-	return result, err
+	return result, count, err
 }
 
 func (p *NoteService) Update(u *root.Note) error {
